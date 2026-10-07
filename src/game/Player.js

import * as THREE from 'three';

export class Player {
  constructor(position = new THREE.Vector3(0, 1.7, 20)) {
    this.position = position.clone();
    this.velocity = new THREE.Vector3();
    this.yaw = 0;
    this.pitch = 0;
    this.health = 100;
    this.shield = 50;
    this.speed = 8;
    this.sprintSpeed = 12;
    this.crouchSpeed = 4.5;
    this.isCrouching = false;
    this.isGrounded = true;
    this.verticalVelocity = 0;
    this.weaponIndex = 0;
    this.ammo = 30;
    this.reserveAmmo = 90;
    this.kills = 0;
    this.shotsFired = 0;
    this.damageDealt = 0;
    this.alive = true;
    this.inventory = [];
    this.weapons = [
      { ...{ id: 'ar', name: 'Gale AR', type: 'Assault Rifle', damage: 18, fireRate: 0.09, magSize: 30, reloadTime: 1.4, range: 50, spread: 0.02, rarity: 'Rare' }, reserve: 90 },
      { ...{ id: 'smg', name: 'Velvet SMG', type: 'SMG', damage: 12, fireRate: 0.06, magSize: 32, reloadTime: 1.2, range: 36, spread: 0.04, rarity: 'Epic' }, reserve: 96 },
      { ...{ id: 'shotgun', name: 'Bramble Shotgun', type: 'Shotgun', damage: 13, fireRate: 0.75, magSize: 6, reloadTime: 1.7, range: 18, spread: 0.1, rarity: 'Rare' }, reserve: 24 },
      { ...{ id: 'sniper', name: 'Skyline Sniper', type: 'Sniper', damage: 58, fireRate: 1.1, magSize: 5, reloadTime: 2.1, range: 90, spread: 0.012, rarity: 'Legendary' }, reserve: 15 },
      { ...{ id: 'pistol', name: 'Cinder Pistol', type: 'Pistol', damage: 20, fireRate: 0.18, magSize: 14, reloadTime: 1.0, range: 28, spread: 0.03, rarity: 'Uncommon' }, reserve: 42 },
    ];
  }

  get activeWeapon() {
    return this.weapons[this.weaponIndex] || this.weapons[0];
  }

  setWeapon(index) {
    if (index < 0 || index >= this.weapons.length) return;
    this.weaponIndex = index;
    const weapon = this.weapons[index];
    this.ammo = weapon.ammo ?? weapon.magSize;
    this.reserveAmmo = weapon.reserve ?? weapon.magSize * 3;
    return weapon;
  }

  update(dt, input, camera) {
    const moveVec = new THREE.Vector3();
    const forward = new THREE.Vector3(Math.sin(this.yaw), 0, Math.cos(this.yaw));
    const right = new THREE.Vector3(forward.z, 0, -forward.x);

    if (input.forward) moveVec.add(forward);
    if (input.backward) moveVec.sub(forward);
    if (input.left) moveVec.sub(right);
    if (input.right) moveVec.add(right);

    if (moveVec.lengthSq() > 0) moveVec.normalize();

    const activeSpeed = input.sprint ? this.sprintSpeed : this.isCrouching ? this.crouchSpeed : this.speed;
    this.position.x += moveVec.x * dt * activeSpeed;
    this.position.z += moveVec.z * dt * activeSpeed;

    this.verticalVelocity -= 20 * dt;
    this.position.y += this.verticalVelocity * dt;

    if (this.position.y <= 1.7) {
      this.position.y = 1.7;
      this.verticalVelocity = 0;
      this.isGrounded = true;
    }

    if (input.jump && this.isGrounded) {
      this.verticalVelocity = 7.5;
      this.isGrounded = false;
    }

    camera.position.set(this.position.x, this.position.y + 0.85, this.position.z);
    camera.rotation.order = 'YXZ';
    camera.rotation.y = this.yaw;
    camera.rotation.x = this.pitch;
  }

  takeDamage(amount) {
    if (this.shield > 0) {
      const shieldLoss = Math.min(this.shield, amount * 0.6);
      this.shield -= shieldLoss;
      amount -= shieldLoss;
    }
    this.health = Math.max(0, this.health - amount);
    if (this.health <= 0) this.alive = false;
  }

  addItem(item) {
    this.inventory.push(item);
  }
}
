@@ -1,0 +1,23 @@
+export const weaponCatalog = [
+  { id: 'ar', name: 'Gale AR', type: 'Assault Rifle', damage: 18, fireRate: 0.09, magSize: 30, reloadTime: 1.4, range: 50, spread: 0.02, rarity: 'Rare' },
+  { id: 'smg', name: 'Velvet SMG', type: 'SMG', damage: 12, fireRate: 0.06, magSize: 32, reloadTime: 1.2, range: 36, spread: 0.04, rarity: 'Epic' },
+  { id: 'shotgun', name: 'Bramble Shotgun', type: 'Shotgun', damage: 13, fireRate: 0.75, magSize: 6, reloadTime: 1.7, range: 18, spread: 0.1, rarity: 'Rare' },
+  { id: 'sniper', name: 'Skyline Sniper', type: 'Sniper', damage: 58, fireRate: 1.1, magSize: 5, reloadTime: 2.1, range: 90, spread: 0.012, rarity: 'Legendary' },
+  { id: 'pistol', name: 'Cinder Pistol', type: 'Pistol', damage: 20, fireRate: 0.18, magSize: 14, reloadTime: 1.0, range: 28, spread: 0.03, rarity: 'Uncommon' },
+  { id: 'burst', name: 'Bolt Burst', type: 'Burst Rifle', damage: 15, fireRate: 0.12, magSize: 24, reloadTime: 1.5, range: 42, spread: 0.02, rarity: 'Epic' },
+  { id: 'heavy', name: 'Titan Pulse', type: 'Heavy Weapon', damage: 28, fireRate: 0.2, magSize: 18, reloadTime: 2.0, range: 55, spread: 0.025, rarity: 'Epic' },
+];
+
+export class WeaponSystem {
+  constructor() {
+    this.weapons = weaponCatalog.map((weapon) => ({ ...weapon, reserve: weapon.magSize * 3 }));
+  }
+
+  createWeaponSnapshot(index = 0) {
+    return { ...weaponCatalog[index], reserve: weaponCatalog[index].magSize * 3 };
+  }
+
+  getWeaponById(id) {
+    return weaponCatalog.find((weapon) => weapon.id === id) || weaponCatalog[0];
+  }
+}
